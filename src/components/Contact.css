@@ -1,0 +1,251 @@
+/* -------------------------------------------------- */
+/* ✅ CONTACT PAGE — TOP SECTION */
+/* -------------------------------------------------- */
+
+/* Page Title */
+.contact-page-title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.contact-page-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* OUTER WHITE BOX */
+.contact-wrapper {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 25px;
+  gap: 25px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+}
+
+/* LEFT BLUE BOX */
+.contact-left {
+  width: 36%;
+  padding: 40px;
+  border-radius: 20px;
+  color: #fff;
+  background: url("/blue-bg.png"), #5e8df1;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* LEFT DETAILS */
+.contact-details p {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 18px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+/* RIGHT FORM SECTION */
+.contact-right {
+  width: 64%;
+  padding-right: 10px;
+}
+
+/* Course Select */
+.course-select label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.radio-group {
+  display: flex;
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  width: 100%;
+  border: 1px solid #edecec;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: px;
+}
+
+/* Inputs & Fields */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #d6d6d6;
+}
+
+.phone-group {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.phone-group select {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.phone-group input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.phone-group select:focus,
+.phone-group input:focus {
+  border-color: #999;
+}
+
+.state-select {
+  width: 100%;
+}
+
+/* Full width fields */
+.full-width {
+  grid-column: 1 / span 2;
+}
+
+/* Message box */
+textarea {
+  height: 130px;
+  resize: none;
+}
+
+/* Send Button */
+.send-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: #7a9cff;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.download-app-section {
+  width: 100%;
+  background: linear-gradient(135deg, hsl(214, 92%, 57%) 0%, #4193f8 40%, #468ddd 100%);
+  background-blend-mode: overlay;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 70px;
+  box-sizing: border-box;
+  border-radius: 9px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+
+}
+
+/* LEFT BLOCK */
+.left-block {
+  width: 25%;
+}
+
+.left-block h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.left-block ul {
+  list-style: disc;
+  padding-left: 25px;
+  margin-bottom: 40px;
+}
+
+.left-block ul li {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.offline-title {
+  margin-top: 10px;
+}
+
+.offline-locations {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* MIDDLE BLOCK (devices) */
+.middle-block {
+  width: 35%;
+  text-align: center;
+}
+
+.devices-img {
+  width: 100%;
+  max-width: 350px;
+}
+
+/* RIGHT BLOCK */
+.right-block {
+  width: 30%;
+  text-align: center;
+}
+
+.right-block h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.qr-img {
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+.or-text {
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.store-buttons img {
+  width: 150px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .download-app-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .left-block,
+  .middle-block,
+  .right-block {
+    width: 100%;
+  }
+}

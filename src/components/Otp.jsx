@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import "./Otp.css";
-
 import img1 from "../assets/slide1-28ef5fa6.png";
 import img2 from "../assets/slide2-07af1764.png";
 import img3 from "../assets/slide3-41cdd860.png";
@@ -14,7 +13,6 @@ const Otp = ({ mobile, goBack }) => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [timer, setTimer] = useState(60);
 
-  // ✅ Auto Slider
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -22,7 +20,6 @@ const Otp = ({ mobile, goBack }) => {
     return () => clearInterval(timer);
   }, []);
 
-  // ✅ OTP Countdown
   useEffect(() => {
     if (timer <= 0) return;
     const t = setInterval(() => setTimer((x) => x - 1), 1000);

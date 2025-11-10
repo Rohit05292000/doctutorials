@@ -7,7 +7,13 @@
 }
 
 .otp-navbar {
-  padding: 20px 60px;
+  width: 100%;
+  height: 90px;
+  background: #e9eefc;
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.03);
 }
 
 .logo-img {

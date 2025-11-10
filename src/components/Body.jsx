@@ -4,7 +4,8 @@ import {
   FaEnvelope, 
   FaUniversity, 
   FaPen,
-  FaMapMarkerAlt 
+  FaMapMarkerAlt,
+  FaUser
 } from "react-icons/fa";
 import "./Body.css";
 
@@ -85,7 +86,7 @@ const Body = () => {
         <div className="form-group">
           <label>Name*</label>
           <div className="input-box">
-            <FaUniversity className="icon" />
+            <FaUser className="icon" />
             <input
               type="text"
               name="name"

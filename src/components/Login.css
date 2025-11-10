@@ -12,11 +12,12 @@
   height: 80px;
   background: #e9eefc;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  gap: 450px;
   padding: 0 60px;
   box-sizing: border-box;
-}
+} 
 
 .logo-img {
   width: 80px;
@@ -167,6 +168,6 @@
   margin-top: 25px;
   color: #6f6f6f;
   font-size: 13px;
-  transform: translateX(-2px);
+  color: blue;
   cursor: pointer;
 }

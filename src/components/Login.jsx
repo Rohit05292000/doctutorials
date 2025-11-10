@@ -6,8 +6,11 @@ import img1 from "../assets/slide1-28ef5fa6.png";
 import img2 from "../assets/slide2-07af1764.png";
 import img3 from "../assets/slide3-41cdd860.png";
 
+import Otp from "./Otp";   
+
 const Login = () => {
   const [mobile, setMobile] = useState("");
+  const [showOtp, setShowOtp] = useState(false); 
 
   const images = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
@@ -23,24 +26,22 @@ const Login = () => {
   const handleVerify = (e) => {
     e.preventDefault();
 
-    if (!mobile.trim()) {
-      alert("Please enter mobile number");
-      return;
-    }
-
     if (!/^[0-9]{10}$/.test(mobile)) {
       alert("Enter a valid 10-digit mobile number");
       return;
     }
 
-    alert("Mobile Verified Successfully: " + mobile);
-    console.log("Submitted Mobile Number:", mobile);
+    setShowOtp(true);
   };
+
+ 
+  if (showOtp) {
+    return <Otp mobile={mobile} goBack={() => setShowOtp(false)} />;
+  }
+
 
   return (
     <div className="login-container">
-
-      {/* ✅ Navbar */}
       <header className="navbar">
         <div className="nav-left">
           <img src={logo} alt="logo" className="logo-img" />
@@ -54,13 +55,9 @@ const Login = () => {
         </nav>
       </header>
 
-      {/* ✅ MAIN SECTION */}
       <div className="main-wrapper">
 
-        {/* ✅ LEFT Section */}
         <div className="left-content">
-
-          {/* ✅ 3 Animated Dots */}
           <div className="dots">
             {images.map((_, index) => (
               <span
@@ -75,11 +72,9 @@ const Login = () => {
             medical journey
           </h2>
 
-          {/* ✅ Auto-changing image */}
           <img src={images[current]} className="hero-img" alt="illustration" />
         </div>
 
-        {/* ✅ LOGIN CARD */}
         <div className="login-card">
           <h3>Let's Get Started</h3>
 
@@ -92,12 +87,10 @@ const Login = () => {
 
               <input
                 type="text"
-                placeholder="Enter mobile number"
                 maxLength="10"
+                placeholder="Enter mobile number"
                 value={mobile}
-                onChange={(e) =>
-                  setMobile(e.target.value.replace(/\D/g, ""))
-                }
+                onChange={(e) => setMobile(e.target.value.replace(/\D/g, ""))}
               />
             </div>
 

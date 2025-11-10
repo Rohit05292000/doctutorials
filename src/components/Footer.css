@@ -1,10 +1,10 @@
 .footer-wrapper {
   bottom: 0;
-  position: fixed;
+  position: relative;
   width: 100%;
   background: #7fa6e7; 
-  padding: 35px 0;
-  margin-top: 40px;
+  padding: 35px ;
+  margin-top: 100px;
 }
 
 

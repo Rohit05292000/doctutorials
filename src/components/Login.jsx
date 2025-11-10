@@ -12,7 +12,6 @@ const Login = () => {
   const images = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
 
-  // ✅ Auto-change slider every 2 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -21,7 +20,6 @@ const Login = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // ✅ Validate mobile number
   const handleVerify = (e) => {
     e.preventDefault();
 

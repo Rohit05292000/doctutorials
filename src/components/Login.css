@@ -19,7 +19,7 @@
 }
 
 .logo-img {
-  width: 120px;
+  width: 80px;
 }
 
 .nav-right a {
@@ -33,7 +33,7 @@
   color: #4b72d4;
 }
 
-/* ✅ CENTER LAYOUT */
+
 .main-wrapper {
   display: flex;
   justify-content: space-between;

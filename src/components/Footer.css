@@ -1,10 +1,10 @@
 .footer-wrapper {
-  bottom: 0;
+  bottom: 0px;
   position: relative;
   width: 100%;
   background: #7fa6e7; 
   padding: 35px ;
-  margin-top: 100px;
+  margin-top: 0;
 }
 
 
@@ -39,10 +39,15 @@
 }
 
 .footer-menu a {
+  display: inline-block;      
+  transition: 0.25s ease;      
+}
+
+.footer-menu a:hover {
   color: white;
-  font-size: 18px;
   font-weight: 600;
   text-decoration: none;
+  transform: translateY(-3px) scale(1.07);   
 }
 
 .footer-menu a:hover {
@@ -65,6 +70,7 @@
   color: white;
   cursor: pointer;
   font-size: 20px;
+  margin-top: 15px;
 }
 
 .social-box:hover {

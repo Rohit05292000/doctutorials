@@ -1,0 +1,129 @@
+/* --- 1. Base Navbar Layout (from initial context) --- */
+.navbar {
+  width: 100%;
+  height: 85px;
+  background: #ffffff;
+  /* Grid Layout: Logo (220px) | Links (auto) | Button (220px) */
+  display: grid;
+  grid-template-columns: 220px auto 220px;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-left .nav-logo {
+  /* Adjust path if needed, but the size is key */
+  height: 48px; 
+}
+
+/* --- 2. Menu Links Styling --- */
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+.nav-menu li {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  /* Essential for positioning the dropdown box */
+  position: relative; 
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  color: #000; /* Ensure text is black/dark */
+}
+
+.down-icon {
+  font-size: 12px;
+  margin-left: 4px;
+  /* This ensures the icon stays next to the text */
+  transition: transform 0.2s ease-in-out; 
+}
+
+/* Optional: Rotate icon when dropdown is open */
+.dropdown.open .down-icon {
+    transform: rotate(180deg);
+}
+
+
+/* --- 3. Dropdown Box Styling --- */
+
+/* Style for the main dropdown box (Courses) */
+.dropdown-box {
+  position: absolute;
+  top: 55px; /* Positions it below the link, considering the li padding */
+  left: 0;
+  /* Width matching the Courses menu in the image */
+  width: 220px; 
+  background: #fff;
+  border-radius: 8px; /* Slightly refined border-radius */
+  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000; /* Ensures it sits above other elements */
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+/* Style for the smaller dropdown box (Seat Predictor) */
+.dropdown-box.small {
+  /* Width matching the Seat Predictor menu in the image */
+  width: 160px; 
+}
+
+.dropdown-box a {
+  padding: 8px 20px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap; /* Prevents menu items from wrapping */
+}
+
+.dropdown-box a:hover {
+  background: #f5f7fa; /* Light gray background on hover */
+}
+
+
+/* --- 4. Right Section and Button --- */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login-btn {
+  background: #6f8eea; /* The blue color from the image */
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.login-btn:hover {
+  background: #5876d1;
+}
+
+/* --- 5. Animation Keyframes --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

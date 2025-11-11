@@ -5,8 +5,12 @@ import img1 from "../assets/slide1-28ef5fa6.png";
 import img2 from "../assets/slide2-07af1764.png";
 import img3 from "../assets/slide3-41cdd860.png";
 import logo from "../assets/header-logo.svg";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Otp = ({ mobile, goBack }) => {
+  const navigate = useNavigate();
   const images = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
 
@@ -40,8 +44,16 @@ const Otp = ({ mobile, goBack }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     const finalOtp = otp.join("");
+
+    if (finalOtp.length !== 4) {
+      alert("Please enter valid 4 digit OTP");
+      return;
+    }
+
     // alert("OTP Submitted: " + otp.join(""));
     console.log(`OTP submitted ${otp}`);
+     navigate("/home");
   };
 
   return (

@@ -28,7 +28,7 @@ import './Neetpg.css';
 const Neetpg = () => {
   return (
     <>
-      {/* ✅ HERO SECTION */}
+     
       <div className="neetpg-wrapper">
         <div className="neetpg-left">
           <h1 className="neetpg-title">Upgrade your NEET PG<br/>Mastery with V5</h1>
@@ -49,7 +49,6 @@ const Neetpg = () => {
         </div>
       </div>
 
-      {/* ✅ FACULTY SECTION */}
       <div className="faculty-wrapper">
         <h2 className="faculty-title">Faculty For Successful NEET PG Exam Preparation</h2>
 
@@ -60,12 +59,9 @@ const Neetpg = () => {
         <div className="faculty-grid">
           {faculty.map((f, index) => (
             <div className="faculty-card" key={index}>
-             <div className="faculty-img-wrapper">
-               <img src={f.img} alt={f.name} className="faculty-img" />
-             </div>
+              <img src={f.img} alt={f.name} className="faculty-img" />
               <h4>{f.name}</h4>
-                 <p>{f.subject}</p>
-                 <a href="#">Read Bio</a>
+              <p>{f.subject}</p>
             </div>
           ))}
         </div>

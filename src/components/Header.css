@@ -1,31 +1,31 @@
 .header {
-    background-color: rgb(178, 238, 238);
-    position: fixed;            /* ✅ Fix entire header */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 65px;
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    padding-left: 20px;         /* adjust spacing as needed */
+  background-color: rgb(178, 238, 238);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;         /* ✅ You can reduce this if needed */
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between; /* ✅ Adds correct spacing */
+  align-items: center;
+  padding: 0 20px;      /* ✅ Fixes spacing */
+  box-sizing: border-box;
 }
 
-/* ✅ DO NOT use fixed here */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .img {
-    height: 45px;
-    padding: 10px;
+  height: 45px;
 }
 
 .h2 {
-    color: #fff;
-    font-size: 20px;
-    margin-left: 10px;
+  color: #f9f9f9;          /* ✅ Black text (white was invisible) */
+  font-size: 20px;
+  margin-left: 10px;
+  
 }

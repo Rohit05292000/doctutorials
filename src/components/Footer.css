@@ -1,15 +1,15 @@
 .footer-wrapper {
-  bottom: 0px;
-  position: relative;
+  /* bottom: 0px;
+  position: relative; */
   width: 100%;
-  background: #7fa6e7; 
+  background: #7ca3e6; 
   padding: 35px ;
   margin-top: 0;
 }
 
 
 .footer-content {
-  width: 100%;
+  width: 100vw;
   max-width: 1400px;
   margin: auto;
   display: flex;
@@ -30,17 +30,20 @@
 
 .footer-icon {
   font-size: 22px;
+  
 }
 
 
 .footer-menu {
   display: flex;
   gap: 35px;
+  
 }
 
 .footer-menu a {
   display: inline-block;      
-  transition: 0.25s ease;      
+  transition: 0.25s ease;
+  color: #ffff;      
 }
 
 .footer-menu a:hover {
@@ -57,6 +60,7 @@
 .footer-social {
   display: flex;
   gap: 12px;
+   justify-content: center;
 }
 
 .social-box {
@@ -75,6 +79,7 @@
 
 .social-box:hover {
   background: rgba(255, 255, 255, 0.4);
+  transform: translateY(3px);
 }
 
 

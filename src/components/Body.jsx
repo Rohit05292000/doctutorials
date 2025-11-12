@@ -8,6 +8,8 @@ import {
   FaUser
 } from "react-icons/fa";
 import "./Body.css";
+import Header from "./header";
+import Footer from "./Footer";
 
 const Body = () => {
 
@@ -95,6 +97,8 @@ const Body = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="form-wrapper">
 
       {/* ✅ Left Info Section */}
@@ -315,6 +319,8 @@ const Body = () => {
 
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

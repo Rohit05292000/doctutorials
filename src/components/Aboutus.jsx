@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import logo from "../assets/header-logo.svg";
 import iconlogo from "../assets/icon.png";
-import adwik from "../assets/adwik.png"
-import adit from "../assets/adit.png"
-import karteek from "../assets/karteek.png"
+import adwik from "../assets/adwik.png";
+import adit from "../assets/adit.png";
+import karteek from "../assets/karteek.png";
+
+import "./Blogs.css";
 import "./Aboutus.css";
 
 import {
@@ -18,9 +22,71 @@ import {
 } from "react-icons/fa";
 
 const Aboutus = () => {
+  const [open, setOpen] = useState(null);
+
+  const toggleMenu = (menu) => {
+    setOpen(open === menu ? null : menu);
+  };
+
   return (
     <>
-      {/* ✅ MISSION & VISION SECTION */}
+      {/* ✅ NAVBAR MERGED HERE */}
+      <nav className="navbar">
+        {/* LEFT — LOGO */}
+        <div className="nav-left">
+          <img src={logo} alt="DocTutorials" className="nav-logo" />
+        </div>
+
+        {/* CENTER — MENU */}
+        <ul className="nav-menu">
+
+          <li>About us</li>
+          <li>Faculty</li>
+
+          {/* COURSES DROPDOWN */}
+          <li className="dropdown" onClick={() => toggleMenu("courses")}>
+            Courses <FaChevronDown className="down-icon" />
+
+            {open === "courses" && (
+              <div className="dropdown-box">
+                <a>MBBS CURRICULUM</a>
+                <a>NEET PG</a>
+                <a>INI CET</a>
+                <a>FMGE</a>
+                <a>PG RESIDENCY</a>
+                <a>NEET SS</a>
+                <a>INI SS</a>
+                <a>Fellowship</a>
+              </div>
+            )}
+          </li>
+
+          <li>Plans</li>
+          <li>DTLC</li>
+
+          {/* SEAT PREDICTOR DROPDOWN */}
+          <li className="dropdown" onClick={() => toggleMenu("seat")}>
+            Seat Predictor <FaChevronDown className="down-icon" />
+            {open === "seat" && (
+              <div className="dropdown-box small">
+                <a>NEET PG</a>
+                <a>NEET SS</a>
+              </div>
+            )}
+          </li>
+
+          <li>Contact Us</li>
+        </ul>
+
+        {/* RIGHT — LOGIN */}
+        <div className="nav-right">
+          <button className="login-btn">Login/Signup</button>
+        </div>
+      </nav>
+
+      {/* ✅ ✅ ✅ ABOUT US CONTENT STARTS HERE ✅ ✅ ✅ */}
+
+      {/* MISSION & VISION */}
       <div className="mv-container">
         <div className="mv-text">
           <h1>Our Mission & Vision</h1>
@@ -53,7 +119,7 @@ const Aboutus = () => {
         </div>
       </div>
 
-      {/* ✅ EXTRA SECTION */}
+      {/* WHY CHOOSE */}
       <div className="extra-wrapper">
         <h2 className="extra-title">Why Choose DocTutorials?</h2>
         <p className="extra-subtitle">
@@ -62,7 +128,7 @@ const Aboutus = () => {
         </p>
       </div>
 
-      {/* ✅ APPROACH SECTION */}
+      {/* APPROACH */}
       <div className="approach-container">
         <h2 className="approach-title">
           Our Approach To Unlock Your Medical Exam Success
@@ -132,7 +198,7 @@ const Aboutus = () => {
         </div>
       </div>
 
-      {/* ✅ ✅ ✅ LEADERS SECTION (AT LAST) ✅ ✅ ✅ */}
+      {/* ✅ LEADERS SECTION */}
       <div className="leaders-section">
 
         <div className="leaders-title">
@@ -141,7 +207,7 @@ const Aboutus = () => {
         </div>
 
         <div className="leaders-grid">
-          
+
           {/* Leader 1 */}
           <div className="leader-card">
             <div className="leader-img-wrapper">

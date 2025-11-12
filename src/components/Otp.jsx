@@ -53,7 +53,8 @@ const Otp = ({ mobile, goBack }) => {
 
     // alert("OTP Submitted: " + otp.join(""));
     console.log(`OTP submitted ${otp}`);
-     navigate("/home");
+     localStorage.setItem("isLoggedIn", true);
+     navigate("/dashboard");
   };
 
   return (

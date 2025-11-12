@@ -1,111 +1,156 @@
-/* ✅ FULL PAGE BACKGROUND */
+/* ======================================
+   PAGE BACKGROUND
+====================================== */
+body {
+  background-color: #7ca3e6;
+}
+
 .form-wrapper {
-   width: 105.7%;
+  background-color: #7ca3e6;
   min-height: 100vh;
-  background: #7fa6e7;
-  padding: 60px 0 100px;
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: "Inter", sans-serif;
+  
 }
 
-/* ✅ TOP TEXT */
+/* ======================================
+   BLUE INFO HEADER
+====================================== */
 .info-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  padding:  2px 35px;
+  width: 100vw;
+  padding: 100px 100px 0 115px;
   color: #fff;
+  text-align: left;
+  box-sizing: border-box;
 }
 
-.info-text {
-  font-size: 16px;
-  line-height: 1.7;
+.info-wrapper p {
+  font-weight: 700;
+  font-size: 18px;
+  max-width: 1100px;
+  margin-bottom: 18px;
+  line-height: 1.5;
 }
 
-/* ✅ WHITE CARD */
+.info-wrapper ul {
+  margin-left: 25px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  max-width: 1100px;
+}
+
+.info-wrapper ul li {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* ======================================
+   WHITE CARD CONTAINER
+====================================== */
 .form-container {
-  width: 100%;
+  width: 100vw;
   max-width: 1200px;
-  background: #fff;
-  padding: 40px 45px;
-  border-radius: 22px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  padding: 40px;
+  margin: 30px auto;
+  border-radius: 20px;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  /* margin-left: 100px; */
 }
 
-/* ✅ Heading */
+/* Heading */
 .form-container h2 {
-  font-size: 20px;
-  margin-bottom: 25px;
-  color: #2b2b2b;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3e5e;
+  margin-bottom: 30px;
+  text-align: left;
+  padding-left: 4px;
 }
 
-/* ✅ FIXED GRID */
+/* ======================================
+   GRID STRUCTURE
+====================================== */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 35px;
-  row-gap: 20px;
+  gap: 30px 50px;
 }
 
-/* ✅ LABEL */
+/* Form Group + Label */
 .form-group {
   display: flex;
   flex-direction: column;
 }
 
 .form-group label {
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  color: #2b2b2b;
 }
 
-/* ✅ INPUT BOX FIX — align icon + input perfectly */
+/* ======================================
+   INPUT BOX STYLE (COMPACT ICON STYLE)
+====================================== */
 .input-box {
   position: relative;
   width: 100%;
   height: 42px;
-  border: 1px solid rgba(0,0,0,0.18);
+  border: 1px solid rgba(0, 0, 0, 0.18);
   border-radius: 7px;
   background: #fff;
-  display: flex;          
-  align-items: center;    
-  gap: 10px;              
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
 }
 
-/* ICON FIX */
+/* ICON FIX (compact style, centered nicely) */
 .input-box .icon {
-  font-size: 10px !important;
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  min-height: 28px;
+  font-size: 14px !important;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  min-height: 26px;
   color: #bababa;
-  margin-top: 8px;
-  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
 }
 
-
+/* INPUT + SELECT FIELDS */
 .input-box input,
 .input-box select {
   width: 100%;
   height: 100%;
-  padding-left: 10px;  
+  padding-left: 6px;
   border: none;
   outline: none;
   font-size: 15px;
   background: transparent;
   box-sizing: border-box;
 }
+
+/* SELECT DROPDOWN FIX */
 .input-box select {
-  line-height: normal;    
-  padding-top: 2px;        
-  padding-bottom: 0;       
+  line-height: normal;
+  padding-top: 2px;
+  padding-bottom: 0;
   display: flex;
-  align-items: center;     
+  align-items: center;
 }
 
 
+/* ======================================
+   BUTTON STYLE
+====================================== */
 .submit-btn {
   width: 180px;
   background: #5c8be1;
@@ -119,36 +164,64 @@
   grid-column: 1 / 3;
 }
 
-/* ✅ RESULTS TABLE */
+.submit-btn:hover {
+  background: #4e6ac0;
+}
+
+/* ======================================
+   RESULTS TABLE
+====================================== */
 .styled-table {
   width: 100%;
-  margin-top: 25px;
   border-collapse: collapse;
-  font-size: 14px;
+  margin-top: 25px;
+  font-size: 15px;
 }
 
-.styled-table th,
+.styled-table th {
+  background: #5f7fd5;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
 .styled-table td {
-  padding: 10px 14px;
-  border: 1px solid #e0e0e0;
+  padding: 12px;
+  border-bottom: 1px solid #dcdcdc;
 }
 
-/* ✅ DISCLAIMER */
+.styled-table tr:hover {
+  background-color: #f5f7ff;
+}
+
+/* ======================================
+   DISCLAIMER SECTION
+====================================== */
 .disclaimer {
   margin-top: 25px;
   font-size: 14px;
 }
 
-/* ✅ MOBILE FIX */
+.disclaimer ul {
+  margin-left: 20px;
+}
+
+/* ======================================
+   RESPONSIVE FIXES
+====================================== */
 @media (max-width: 900px) {
   .form-grid {
     grid-template-columns: 1fr;
   }
 
   .submit-btn {
-    grid-column: 1;
     width: 100%;
+    text-align: center;
+    grid-column: 1;
+  }
+
+  .info-wrapper {
+    padding: 80px 30px 0 30px;
   }
 }
-
-

@@ -11,11 +11,11 @@ body {
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   font-family: "Inter", sans-serif;
   
 }
-
 /* ======================================
    BLUE INFO HEADER
 ====================================== */

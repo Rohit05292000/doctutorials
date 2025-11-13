@@ -1,26 +1,22 @@
-import React from 'react'
-import Header from './Components/header';
-import Body from './components/Body';
-import Footer from './components/Footer';
-import Aboutus from './components/Aboutus';
-import Contact from './components/Contact';
-// import Navbar from './components/Navbar';
-import Login from './components/Login';
-
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Body from "./components/Body";
+import Body1 from "./components/Body1";
 
 const App = () => {
   return (
-    <div>
-      {/* <Header/> */}
-      <Body/>
-      {/* <Aboutus/> */}
-      {/* <Contact/> */}
-      {/* <Navbar/> */}
-      {/* <Login/>   */}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute> }/>
+        <Route path="/Body" element={  <Body/> } />
+        <Route path="/Body1" element={  <Body1/>}/> 
+       </Routes>
+    </BrowserRouter>
+  );
+};
 
-      {/* <Footer/> */}
-    </div>
-  )
-}
-
-export default App
+export default App;

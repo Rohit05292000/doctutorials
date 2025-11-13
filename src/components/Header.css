@@ -4,12 +4,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 65px;         /* ✅ You can reduce this if needed */
+  height: 65px;         
   z-index: 9999;
   display: flex;
-  justify-content: space-between; /* ✅ Adds correct spacing */
+  justify-content: space-between; 
   align-items: center;
-  padding: 0 20px;      /* ✅ Fixes spacing */
+  padding: 0 20px;      
   box-sizing: border-box;
 }
 
@@ -24,8 +24,89 @@
 }
 
 .h2 {
-  color: #f9f9f9;          /* ✅ Black text (white was invisible) */
+  color: #f9f9f9;          
   font-size: 20px;
   margin-left: 10px;
   
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+}
+
+.profile-icon {
+  font-size: 28px;
+  color: #555;
+  
+}
+
+.logout-btn {
+  background: #ffffff;
+  color: #1395ff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  
+  transform: translatey(1px)
+}
+.header-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+ .dropdown-menu {
+  position: absolute;
+  top: 60px;         
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 10000;
+  animation: fadeIn 0.15s ease-in;
+  
+} 
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  text-align: left;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-menu button:hover {
+  background: #f3f3f3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

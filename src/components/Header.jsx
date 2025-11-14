@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import headerLogo from "../assets/header-logo.svg";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "./AuthProvider";

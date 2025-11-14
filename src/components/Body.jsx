@@ -8,7 +8,7 @@ import {
   FaUser
 } from "react-icons/fa";
 import "./Body.css";
-import Header from "./header";
+import Header from "./Header";
 import Footer from "./Footer";
 
 const Body = () => {

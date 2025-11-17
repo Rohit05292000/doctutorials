@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import headerLogo from "../assets/header-logo.svg";
 import { FaUserCircle } from "react-icons/fa";
-import { AuthContext } from "./AuthProvider";
 import "./Header.css";
-
+import { AuthContext } from "./AuthProvider"; 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);

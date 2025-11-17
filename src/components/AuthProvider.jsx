@@ -28,6 +28,9 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("todos");
+    localStorage.removeItem("todos_count");
     navigate("/", { replace: true });
   };
 

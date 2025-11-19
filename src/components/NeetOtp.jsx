@@ -28,7 +28,7 @@ const NeetOtp = ({ mobile, onVerified, otpSending }) => {
     }
   };
 
-  const submitOtp = () => {
+  const submitOtp = async () => {
     const otp = digits.join("");
 
     if (otp.length !== 4) {
@@ -37,7 +37,18 @@ const NeetOtp = ({ mobile, onVerified, otpSending }) => {
     }
 
     setError("");
-    onVerified(otp);
+
+    try {
+      const result = await onVerified(otp);
+
+      // 🔴 If backend returns OTP invalid → set error
+      if (!result?.isSuccess) {
+        setError(result.message || "Invalid OTP. Please try again.");
+        return;
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -71,7 +82,6 @@ const NeetOtp = ({ mobile, onVerified, otpSending }) => {
         >
           {otpSending ? "Processing…" : "Submit"}
         </button>
-
       </div>
     </div>
   );

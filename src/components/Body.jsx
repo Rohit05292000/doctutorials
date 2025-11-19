@@ -33,6 +33,7 @@ const Body = () => {
   const [, setPendingResults] = useState(null);
   const [showOtp, setShowOtp] = useState(false);
   const [otpSending, setOtpSending] = useState(false);
+  const [otpError, setOtpError] = useState("");
 
   const URL = "https://svcp.doctutorials.com/studentv2";
 
@@ -247,27 +248,31 @@ const statesList = [
   //  AFTER OTP VERIFY
   // -----------------------------
   const handleOtpVerify = async (otp) => {
-    setOtpSending(true);      // <-- Start verifying
-    try {
+  setOtpSending(true);
+
+  try {
     const res = await verifyOtpApi(otp);
     const status = res?.gatewayResponse?.status;
 
     if (!status?.isSuccess) {
-     setError(status.message);
-      return;
+      return status;   // IMPORTANT: return to NeetOtp
     }
 
-    // OTP correct → Fetch results again
+    // OTP correct → Fetch results
     const finalRes = await fetchPredictData();
     setResults(finalRes?.gatewayResponse?.response?.seatPredictor || []);
 
     setShowOtp(false);
-   } catch (err) {
-    setError("Something went wrong. Try again.");
-  } finally {
-    setOtpSending(false);    // <-- Ensure loader stops
+    
+    return status;     // return success to NeetOtp
+  } 
+  catch (err) {
+    return { isSuccess: false, message: "Something went wrong. Try again." };
+  } 
+  finally {
+    setOtpSending(false);
   }
-  };
+};
 
  return (
   <>
@@ -503,6 +508,7 @@ const statesList = [
           onVerified={handleOtpVerify}
           onCancel={()=>setShowOtp(false)}
           otpSending={otpSending}
+          errorMessage={otpError}
           verifyOtpApiUrl="https://svcp.doctutorials.com/studentv2"
         />
       )}

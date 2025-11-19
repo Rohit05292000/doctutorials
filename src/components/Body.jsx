@@ -27,10 +27,10 @@ const Body = () => {
     category: ""
   });
 
-   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [results, setResults] = useState([]);
-  const [pendingResults, setPendingResults] = useState(null);
+  const [, setPendingResults] = useState(null);
   const [showOtp, setShowOtp] = useState(false);
   const [otpSending, setOtpSending] = useState(false);
 
@@ -138,7 +138,7 @@ const statesList = [
   };
 
   // -------------------------------
-  // 🔵 1) MAIN API: /predictSeatNEETPG
+  //  1) MAIN API: /predictSeatNEETPG
   // -------------------------------
   const fetchPredictData = async () => {
     const payload = {
@@ -172,7 +172,7 @@ const statesList = [
   };
 
   // -------------------------------
-  // 🔵 2) VERIFY OTP API
+  //  2) VERIFY OTP API
   // -------------------------------
   const verifyOtpApi = async (otp) => {
     const payload = {
@@ -200,7 +200,7 @@ const statesList = [
   };
 
   // -----------------------------
-  // 🔵 FORM SUBMIT
+  //  FORM SUBMIT
   // -----------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -225,7 +225,7 @@ const statesList = [
         return;
       }
 
-      // 🔵 If message == "P" → OTP required
+      //  If message == "P" → OTP required
       if (status.message === "P") {
         setShowOtp(true);
         setPendingResults(res);
@@ -233,7 +233,7 @@ const statesList = [
         return;
       }
 
-      // 🔵 Otherwise, show results directly
+      //  Otherwise, show results directly
       const list = res?.gatewayResponse?.response?.seatPredictor || [];
       setResults(list);
     } catch (err) {
@@ -244,14 +244,16 @@ const statesList = [
   };
 
   // -----------------------------
-  // 🔵 AFTER OTP VERIFY
+  //  AFTER OTP VERIFY
   // -----------------------------
   const handleOtpVerify = async (otp) => {
+    setOtpSending(true);      // <-- Start verifying
+    try {
     const res = await verifyOtpApi(otp);
     const status = res?.gatewayResponse?.status;
 
     if (!status?.isSuccess) {
-      alert(status.message);
+     setError(status.message);
       return;
     }
 
@@ -260,6 +262,11 @@ const statesList = [
     setResults(finalRes?.gatewayResponse?.response?.seatPredictor || []);
 
     setShowOtp(false);
+   } catch (err) {
+    setError("Something went wrong. Try again.");
+  } finally {
+    setOtpSending(false);    // <-- Ensure loader stops
+  }
   };
 
  return (
@@ -273,9 +280,10 @@ const statesList = [
         <p className="info-text">
           <strong>Dear aspirant,</strong><br /><br />
           As the NEET PG 2025 results are announced, you must be anxious to determine
-          which college you could pursue your Post Graduation at.<br /><br />
-          Select the relevant filters and enter Rank + Email to see your possible allotment.<br /><br />
-          <strong>Better viewed on desktop/tablet.</strong>
+          which college you could pursue your Post Graduation at. Kill the anxiety in just 2 steps!<br /><br />
+          Select the relevant filters in the form below and enter your Rank and Email ID to see which college is waiting for you. 
+          We have collated this according to the seat allotment data post-NEET PG 2024.<br /><br />
+          <strong>We recommend viewing this on a desktop or a tablet for a better experience.</strong>
         </p>
       </div>
 
@@ -494,6 +502,7 @@ const statesList = [
           mobile={formData.mobileNo}
           onVerified={handleOtpVerify}
           onCancel={()=>setShowOtp(false)}
+          otpSending={otpSending}
           verifyOtpApiUrl="https://svcp.doctutorials.com/studentv2"
         />
       )}

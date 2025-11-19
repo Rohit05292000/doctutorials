@@ -9,7 +9,7 @@
   align-items: center;
 } */
 .otp-backdrop {
-  position: absolute;
+  position: sticky;
   inset: 0;
   background: rgba(124, 163, 230, 0.12);
   display: flex;
@@ -22,8 +22,8 @@
 
 .otp-wrapper {
   background: #ffffff;
-  width: 85%;
-  max-width: 1000px;
+  width: 95vw;
+  max-width: 1100px;
   height: 260px;
   border-radius: 26px;
   padding-top: 20px;

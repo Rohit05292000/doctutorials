@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./NeetOtp.css";
 
-const NeetOtp = ({ mobile, onVerified, onCancel }) => {
+const NeetOtp = ({ mobile, onVerified, otpSending }) => {
   const [digits, setDigits] = useState(["", "", "", ""]);
   const [error, setError] = useState("");
   const inputsRef = useRef([]);
@@ -28,9 +28,6 @@ const NeetOtp = ({ mobile, onVerified, onCancel }) => {
     }
   };
 
-  // ------------------------------
-  // 🔵 VERIFY → Send OTP to parent
-  // ------------------------------
   const submitOtp = () => {
     const otp = digits.join("");
 
@@ -40,15 +37,7 @@ const NeetOtp = ({ mobile, onVerified, onCancel }) => {
     }
 
     setError("");
-
-    // Parent will call the API
     onVerified(otp);
-  };
-
-  const handleResend = () => {
-    setDigits(["", "", "", ""]);
-    inputsRef.current[0]?.focus();
-    alert(`OTP resent to ${mobile}`);
   };
 
   return (
@@ -66,6 +55,7 @@ const NeetOtp = ({ mobile, onVerified, onCancel }) => {
               maxLength={1}
               inputMode="numeric"
               value={digit}
+              disabled={otpSending}
               onChange={(e) => handleChange(e.target.value, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
             />
@@ -74,15 +64,14 @@ const NeetOtp = ({ mobile, onVerified, onCancel }) => {
 
         {error && <div className="otp-error">{error}</div>}
 
-        <button className="otp-submit" onClick={submitOtp}>
-          Verify OTP
+        <button
+          className="otp-submit"
+          onClick={submitOtp}
+          disabled={otpSending}
+        >
+          {otpSending ? "Processing…" : "Submit"}
         </button>
 
-        <div className="otp-links">
-          <button className="otp-link" onClick={handleResend}>Resend OTP</button>
-          {" • "}
-          <button className="otp-link" onClick={onCancel}>Cancel</button>
-        </div>
       </div>
     </div>
   );

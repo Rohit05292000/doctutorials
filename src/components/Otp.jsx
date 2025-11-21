@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaSms, FaWhatsapp } from "react-icons/fa";
 import "./Otp.css";
+
 import logo from "../assets/header-logo.svg";
+
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthProvider";
+
+import img1 from "../assets/slide1-28ef5fa6.png";
+import img2 from "../assets/slide2-07af1764.png";
+import img3 from "../assets/slide3-41cdd860.png";
+
+
 
 const Otp = ({ mobile, otpToken, doctorId }) => {
-  /* ====== OTP STATE (4 BOXES) ====== */
+  const { login } = useAuth();              // ✅ use login from context
+
   const [otp, setOtp] = useState(["", "", "", ""]);
   const otpRefs = useRef([]);
 
@@ -15,12 +25,9 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
 
   const navigate = useNavigate();
 
+
   /* ====== SLIDER ====== */
-  const images = [
-    "/slide1-28ef5fa6.png",
-    "/slide2-07af1764.png",
-    "/slide3-41cdd860.png",
-  ];
+  const images = [img1,img2,img3];
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -55,27 +62,24 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
   };
 
   /* ====== HANDLE OTP DIGIT CHANGE ====== */
-  const handleOtpChange = (e, index) => {
-    const value = e.target.value.replace(/\D/g, ""); // only digits allowed
+   const handleOtpChange = (e, index) => {
+    const value = e.target.value.replace(/\D/g, "");
 
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Auto move forward
     if (value && index < 3) otpRefs.current[index + 1].focus();
-
-    // Auto move backward when cleared
     if (!value && index > 0) otpRefs.current[index - 1].focus();
   };
 
-  /* ====== VERIFY OTP ====== */
+  /* VERIFY OTP */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError1("");
     setError2("");
 
-    const cleanedOtp = otp.join(""); // merge 4 digits
+    const cleanedOtp = otp.join("");
 
     if (!cleanedOtp) {
       setError1("Enter OTP");
@@ -115,24 +119,30 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
       const data = await res.json();
       const status = data?.serviceResponse?.status;
       const message = data?.serviceResponse?.message;
+
       const doctorInfo = data?.doctor?.[0];
 
       if (status === "Y" && doctorInfo) {
         const {
           sessionToken,
-          doctorId,
+          doctorId: dId,        // ✅ FIXED shadowing
           firstName,
           lastName,
           emailStr,
           mobileNo,
         } = doctorInfo;
 
-        if (sessionToken) localStorage.setItem("sessionToken", sessionToken);
-        if (doctorId) localStorage.setItem("doctorId", doctorId);
-        if (firstName) localStorage.setItem("firstName", firstName);
-        if (lastName) localStorage.setItem("lastName", lastName);
-        if (emailStr) localStorage.setItem("emailStr", emailStr);
-        if (mobileNo) localStorage.setItem("mobileNo", mobileNo);
+        // SAVE ALL DETAILS
+        const userData = {
+          sessionToken,
+          doctorId: dId,
+          firstName,
+          lastName,
+          emailStr,
+          mobileNo,
+        };
+
+        login(userData);        // ✅ LOGIN CONTEXT UPDATED
 
         navigate("/dashboard", { replace: true });
       } else {
@@ -146,88 +156,88 @@ const Otp = ({ mobile, otpToken, doctorId }) => {
   };
 
   return (
-    <div className="otp-main-container">
-      {/* NAVBAR */}
-      <header className="otp-navbar">
-        <div className="nav-left">
-          <img src={logo} alt="logo" className="logo-img" />
-        </div>
-      </header>
+  <div className="otp-main-container">
+  {/* NAVBAR */}
+  <header className="otp-navbar">
+    <img src={logo} alt="logo" className="logo-img" />
+  </header>
 
-      <div className="otp-wrapper">
-        {/* LEFT SIDE SLIDER */}
-        <div className="otp-left">
-          <div className="dots">
-            {images.map((_, index) => (
-              <span
-                key={index}
-                className={current === index ? "dot active" : "dot"}
-              ></span>
-            ))}
-          </div>
+  {/* PAGE CONTENT SPLIT LEFT & RIGHT */}
+  <div className="otp-content">
 
-          <h2 className="otp-left-title">
-            Learn, revise and excel – the ultimate learning platform for your
-            medical journey
-          </h2>
-
-          <img src={images[current]} className="otp-hero-img" alt="slide" />
-        </div>
-
-        {/* RIGHT SIDE OTP CARD */}
-        <div className="otp-card">
-          <h2>Verify Mobile Number</h2>
-
-          <p className="otp-subtitle">A 4-digit OTP has been sent to</p>
-
-          <div className="mobile-box">
-            <span>+91 - {mobile}</span>
-            <FaEdit className="edit-icon" onClick={() => window.history.back()} />
-          </div>
-
-          <form onSubmit={handleSubmit}>
-            <div className="otp-inputs">
-              {otp.map((digit, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  maxLength="1"
-                  className="otp-box"
-                  value={digit}
-                  ref={(el) => (otpRefs.current[index] = el)}
-                  onChange={(e) => handleOtpChange(e, index)}
-                />
-              ))}
-            </div>
-
-            {error1 && <p className="error-msg">{error1}</p>}
-            {error2 && <p className="error-msg2">{error2}</p>}
-
-            <p className="resend-text">
-              {canResend ? (
-                <>
-                  Didn’t receive OTP?{" "}
-                  <span className="resend-link" onClick={() => handleResend("SMS")}>
-                    Resend SMS
-                  </span>{" "}
-                  |{" "}
-                  <span className="resend-link" onClick={() => handleResend("WhatsApp")}>
-                    WhatsApp
-                  </span>
-                </>
-              ) : (
-                <>Resend in <span className="timer">{timer}s</span></>
-              )}
-            </p>
-
-            <button className="submit-otp" disabled={loading}>
-              {loading ? "Verifying..." : "Submit OTP"}
-            </button>
-          </form>
-        </div>
+    {/* LEFT SIDE SLIDER */}
+    <div className="otp-left">
+      <div className="dots">
+        {images.map((_, index) => (
+          <span
+            key={index}
+            className={current === index ? "dot active" : "dot"}
+          ></span>
+        ))}
       </div>
-    </div>
-  );
-};
 
+      <h2 className="otp-left-title">
+        Learn, revise and excel – the ultimate learning platform for your
+        medical journey
+      </h2>
+
+      <img src={images[current]} className="otp-hero-img" alt="slide" />
+    </div>
+
+    {/* RIGHT SIDE OTP CARD */}
+    <div className="otp-card">
+      <h2>Verify Mobile Number</h2>
+
+      <p className="otp-subtitle">A 4-digit OTP has been sent to</p>
+
+      <div className="mobile-box">
+        <span>+91 - {mobile}</span>
+        <FaEdit className="edit-icon" onClick={() => window.history.back()} />
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="otp-inputs">
+          {otp.map((digit, index) => (
+            <input
+              key={index}
+              type="text"
+              maxLength="1"
+              className="otp-box"
+              value={digit}
+              ref={(el) => (otpRefs.current[index] = el)}
+              onChange={(e) => handleOtpChange(e, index)}
+            />
+          ))}
+        </div>
+
+        {error1 && <p className="error-msg">{error1}</p>}
+        {error2 && <p className="error-msg2">{error2}</p>}
+
+        <p className="resend-text">
+          {canResend ? (
+            <>
+              Didn’t receive OTP?{" "}
+              <span className="resend-link" onClick={() => handleResend("SMS")}>
+                <FaSms /> SMS
+              </span>{" "}
+              |{" "}
+              <span className="resend-link" onClick={() => handleResend("WhatsApp")}>
+                <FaWhatsapp /> WhatsApp
+              </span>
+            </>
+          ) : (
+            <>Resend in <span className="timer">{timer}s</span></>
+          )}
+        </p>
+
+        <button className="submit-otp" disabled={loading}>
+          {loading ? "Verifying..." : "Submit OTP"}
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+);
+};
 export default Otp;

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
+import Otp from "./components/Otp";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Body from "./components/Body";
@@ -14,6 +15,7 @@ const App = () => {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/otp" element={<Otp />} />
         <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute> }/>
          <Route path="/neet-otp" element={<NeetOtp />} />
         <Route path="/Body" element={  <Body/> } />

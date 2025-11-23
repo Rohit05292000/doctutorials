@@ -18,8 +18,8 @@ const App = () => {
         <Route path="/otp" element={<Otp />} />
         <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute> }/>
          <Route path="/neet-otp" element={<NeetOtp />} />
-        <Route path="/Body" element={  <Body/> } />
-        <Route path="/Body1" element={  <Body1/>}/> 
+        <Route path="/Body" element={  <Body/>   } />
+        <Route path="/Body1" element={ <Body1/> }/> 
        </Routes>
        </AuthProvider>
     </BrowserRouter>
